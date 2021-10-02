@@ -14,6 +14,12 @@
                     <b-tab title="Usuários">
                         <UserAdmin />
                     </b-tab>
+                     <b-tab title="Beneficiarios" active>
+                        <Beneficiarios />
+                    </b-tab>
+                     <b-tab title="Beneficios" active>
+                        <Beneficios />
+                    </b-tab>
                 </b-tabs>
             </b-card>
         </div>
@@ -25,10 +31,22 @@ import PageTitle from '../template/PageTitle'
 import ArticleAdmin from './ArticleAdmin'
 import CategoryAdmin from './CategoryAdmin'
 import UserAdmin from './UserAdmin'
+import Beneficiarios from './Beneficiarios'
+import Beneficios from './Beneficios'
 
 export default {
     name: 'AdminPages',
-    components: { PageTitle, ArticleAdmin, CategoryAdmin, UserAdmin }
+    components: { 
+        PageTitle, 
+        ArticleAdmin, 
+        CategoryAdmin, 
+        UserAdmin,
+        Beneficiarios,
+        Beneficios
+        
+        
+        
+        }
 }
 </script>
 
