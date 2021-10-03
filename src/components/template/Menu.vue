@@ -2,7 +2,7 @@
     <aside class="menu" v-show="isMenuVisible">
         <div class="menu-filter">
             <i class="fa fa-search fa-lg"></i>
-            <input type="text" placeholder="Digite para filtrar..."
+            <input type="text" placeholder="Consultar Beneficios"
                 v-model="treeFilter" class="filter-field">
         </div>
         <Tree :data="treeData" :options="treeOptions"
@@ -64,7 +64,7 @@ export default {
 
     .menu a,
     .menu a:hover {
-        color: #fff;
+        color: rgb(255, 255, 255);
         text-decoration: none;
     }
 
@@ -88,7 +88,7 @@ export default {
     }
 
     .menu .menu-filter i {
-        color: #AAA;
+        color: rgb(235, 8, 8);/** mudar a cor do icone */
         margin-right: 10px;
     }
 
@@ -102,7 +102,7 @@ export default {
     }
 
     .tree-filter-empty {
-        color: #CCC;
+        color: #CCC;  /*mudar a cor da frase */
         font-size: 1.3rem;
         margin-left: 20px;
     }

@@ -20,6 +20,7 @@ import Content from "@/components/template/Content"
 import Footer from "@/components/template/Footer"
 import Loading from "@/components/template/Loading"
 
+
 export default {
 	name: "App",
 	components: { Header, Menu, Content, Footer, Loading },

@@ -12,25 +12,24 @@
           <b-collapse id="nav-collapse" is-nav>
             <b-navbar-nav>
               <b-nav-item href="#">
-                <i class="fa fa-user"></i>
+                <i class="fa fa-home"></i>
                 Home
               </b-nav-item>
               <b-nav-item href="#">
-                <i class="fa fa-user"></i>
+                <i class="fa fa-credit-card-alt"></i>
                 Beneficios
               </b-nav-item>
             </b-navbar-nav>
 
-            <!-- Right aligned nav items -->
             <b-navbar-nav class="ml-auto">
               <a class="toggle" @click="toggleMenu" v-if="!hideToggle">
-                <b-button size="sm" class="my-2 my-sm-0" type="submit"
-                  >Fazer uma Pesquizar</b-button
-                >
-                <i class="fa fa-lg" :class="icon"></i>
+               <b-nav-item>
+                 <i class="fa  fa-toggle-off" :class="icon"></i>
+                
+               Abrir Menu Lateral
+              </b-nav-item>
               </a>
               <b-nav-item-dropdown right>
-                <!-- Using 'button-content' slot -->
                 <template #button-content>
                   <i class="fa fa-user"></i>
                   <em>User</em>
@@ -59,8 +58,8 @@ export default {
   computed: {
     icon() {
       return this.$store.state.isMenuVisible
-        ? "fa-angle-left"
-        : "fa-angle-down";
+        ? "fa-toggle-on"
+        : " fa-toggle-off ";
     },
   },
   methods: {
@@ -82,7 +81,7 @@ export default {
 
 .title {
   font-size: 1.2rem;
-  color: rgb(240, 20, 20);
+  color: green;
   font-weight: 100;
   flex-grow: 1;
   text-align: center;
