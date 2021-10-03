@@ -5,10 +5,10 @@
         <div class="admin-pages-tabs">
             <b-card no-body>
                 <b-tabs card>
-                    <b-tab title="Artigos" active>
+                    <b-tab title="Beneficiarios" active>
                         <ArticleAdmin />
                     </b-tab>
-                    <b-tab title="Categorias">
+                    <b-tab title="Beneficios">
                         <CategoryAdmin />
                     </b-tab>
                     <b-tab title="Usuários">

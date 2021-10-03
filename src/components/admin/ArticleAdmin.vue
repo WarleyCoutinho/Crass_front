@@ -1,46 +1,44 @@
 <template>
   <div class="article-admin">
     <b-form>
-
+      <input id="article-id" type="hidden" v-model="article.id" />
       <b-card header="Dados Pessoais" header-tag="h4">
         <b-row>
-          <input id="beneficiario-id" type="hidden" v-model="beneficiario.id" />
           <b-col md="4" sm="12">
-            <b-form-group label="Nome:" label-for="beneficiario-name">
+            <b-form-group label="Nome:" label-for="article-name">
               <b-form-input
-                id="beneficiario-name"
+                id="article-name"
                 type="text"
-                v-model="beneficiario.name"
+                v-model="article.name"
                 required
                 :readonly="mode === 'remove'"
-                placeholder="Informe seu Nome "
-              />
-            </b-form-group>
-             <p class="mb-1">Data de nascimento: '{{ beneficiario.name }}'</p> -->
-          </b-col>
-
-          <b-col md="4" sm="12">
-            <b-form-group label="Sexo" label-for="beneficiario-sexo">
-              <b-form-input
-                id="beneficiario-sexo"
-                type="text"
-                v-model="beneficiario.sexo"
-                required
-                :readonly="mode === 'remove'"
-                placeholder="Informe o Sexo"
+                placeholder=""
               />
             </b-form-group>
           </b-col>
 
           <b-col md="4" sm="12">
-            <b-form-group label="Email" label-for="beneficiario-email">
+            <b-form-group label="Sexo:" label-for="article-sexo">
               <b-form-input
-                id="beneficiario-email"
+                id="article-sexo"
                 type="text"
-                v-model="beneficiario.email"
+                v-model="article.sexo"
                 required
                 :readonly="mode === 'remove'"
-                placeholder="Informe o Email"
+                placeholder=""
+              />
+            </b-form-group>
+          </b-col>
+
+          <b-col md="4" sm="12">
+            <b-form-group label="E-mail:" label-for="article-email">
+              <b-form-input
+                id="article-email"
+                type="text"
+                v-model="article.email"
+                required
+                :readonly="mode === 'remove'"
+                placeholder=""
               />
             </b-form-group>
           </b-col>
@@ -48,23 +46,23 @@
 
         <b-row>
           <b-col md="4" sm="12">
-            <b-form-group label="CPF" label-for="beneficiario-cpf">
+            <b-form-group label="CPF:" label-for="article-cpf">
               <b-form-input
-                id="beneficiario-cpf"
+                id="article-cpf"
                 type="text"
-                v-model="beneficiario.cpf"
+                v-model="article.cpf"
                 required
                 :readonly="mode === 'remove'"
-                placeholder="Informe o CPF"
+                placeholder=""
               />
             </b-form-group>
           </b-col>
           <b-col md="4" sm="12">
-            <label for="beneficiario-data-nascimento">Data de validade</label>
+            <label for="article-dtNascimento">Data de dtNascimento:</label>
             <b-input-group class="mb-3">
               <b-form-input
-                id="beneficiario-data-nascimento"
-                v-model="beneficiario.nascimento"
+                id="article-dtNascimento"
+                v-model="article.dtNascimento"
                 type="text"
                 required
                 :readonly="mode === 'remove'"
@@ -73,32 +71,32 @@
               ></b-form-input>
               <b-input-group-append>
                 <b-form-datepicker
-                  v-model="beneficiario.nascimento"
+                  v-model="article.dtNascimento"
                   today-button
                   reset-button
                   close-button
                   button-only
                   right
                   locale="PT"
-                  aria-controls="beneficiario-data-nascimento"
+                  aria-controls="article-dtNascimento"
                   @context="onContext"
                 ></b-form-datepicker>
               </b-input-group-append>
             </b-input-group>
-            <p class="mb-1">Data de nascimento: '{{ beneficiario.nascimento }}'</p> -->
+            <p class="mb-1"></p>
           </b-col>
           <b-col md="4" sm="12">
             <b-form-group
-              label="Naturalidade"
-              label-for="beneficiario-naturalidade"
+              label="Naturalidade:"
+              label-for="article-naturalidade"
             >
               <b-form-input
-                id="beneficiario-naturalidade"
+                id="article-naturalidade"
                 type="text"
-                v-model="beneficiario.naturalidade"
+                v-model="article.naturalidade"
                 required
                 :readonly="mode === 'remove'"
-                placeholder="Informe Nacionalidade"
+                placeholder=""
               />
             </b-form-group>
           </b-col>
@@ -108,12 +106,12 @@
             <b-form-group
               v-if="mode === 'save'"
               label="Beneficio:"
-              label-for="beneficiario-categoryId"
+              label-for="article-categoryId"
             >
               <b-form-select
-                id="beneficiario-categoryId"
+                id="article-categoryId"
                 :options="categories"
-                v-model="beneficiario.categoryId"
+                v-model="article.categoryId"
               />
             </b-form-group>
           </b-col>
@@ -121,12 +119,12 @@
             <b-form-group
               v-if="mode === 'save'"
               label="Atendente:"
-              label-for="beneficiario-userId"
+              label-for="article-userId"
             >
               <b-form-select
-                id="beneficiario-userId"
+                id="article-userId"
                 :options="users"
-                v-model="beneficiario.userId"
+                v-model="article.userId"
               />
             </b-form-group>
           </b-col>
@@ -136,138 +134,112 @@
       <b-card header="Endereço" header-tag="h4">
         <b-row>
           <b-col md="4" sm="12">
-            <p>rua</p>
+            <b-form-group label="Rua:" label-for="article-rua">
+              <b-form-input
+                id="article-rua"
+                type="text"
+                v-model="article.rua"
+                required
+                :readonly="mode === 'remove'"
+                placeholder=""
+              />
+            </b-form-group>
           </b-col>
           <b-col md="4" sm="12">
-            <p>bairro</p>
+            <b-form-group label="Bairro:" label-for="article-bairo">
+              <b-form-input
+                id="article-bairro"
+                type="text"
+                v-model="article.bairro"
+                required
+                :readonly="mode === 'remove'"
+                placeholder=""
+              />
+            </b-form-group>
           </b-col>
           <b-col md="4" sm="12">
-            <p>CP</p>
+            <b-form-group label="CEP:" label-for="article-cep">
+              <b-form-input
+                id="article-cep"
+                type="text"
+                v-model="article.cep"
+                required
+                :readonly="mode === 'remove'"
+                placeholder=""
+              />
+            </b-form-group>
           </b-col>
         </b-row>
 
         <b-row>
           <b-col md="4" sm="12">
-            <p>cidade</p>
+            <b-form-group label="Cidade:" label-for="article-cidade">
+              <b-form-input
+                id="article-cidade"
+                type="text"
+                v-model="article.cidade"
+                required
+                :readonly="mode === 'remove'"
+                placeholder=""
+              />
+            </b-form-group>
           </b-col>
           <b-col md="4" sm="12">
-            <p>estado</p>
+            <b-form-group label="Estado:" label-for="article-estado">
+              <b-form-input
+                id="article-estado"
+                type="text"
+                v-model="article.estado"
+                required
+                :readonly="mode === 'remove'"
+                placeholder=""
+              />
+            </b-form-group>
           </b-col>
           <b-col md="4" sm="12">
-            <p>pais</p>
+            <b-form-group label="País:" label-for="article-pais">
+              <b-form-input
+                id="article-pais"
+                type="text"
+                v-model="article.pais"
+                required
+                :readonly="mode === 'remove'"
+                placeholder=""
+              />
+            </b-form-group>
           </b-col>
         </b-row>
       </b-card>
 
-
-
-
-
-
-
-      <b-card header="Original" header-tag="h4">
+      <b-card header="Observações" header-tag="h4">
         <b-row>
-          <b-col md="4" sm="12">
-            <input id="article-id" type="hidden" v-model="article.id" />
-            <b-form-group label="Nome:" label-for="article-name">
-              <b-form-input
-                id="article-name"
-                type="text"
-                v-model="article.name"
-                required
-                :readonly="mode === 'remove'"
-                placeholder="Informe o Nome do Artigo..."
-              />
-            </b-form-group>
-          </b-col>
-          <b-col md="4" sm="12">
-            <b-form-group label="Descrição" label-for="article-description">
-              <b-form-input
-                id="article-description"
-                type="text"
-                v-model="article.description"
-                required
-                :readonly="mode === 'remove'"
-                placeholder="Informe o Nome do Artigo..."
-              />
-            </b-form-group>
-          </b-col>
-          <b-col md="4" sm="12">
+          <b-col md="12" sm="12">
             <b-form-group
               v-if="mode === 'save'"
-              label="Imagem (URL):"
-              label-for="article-imageUrl"
+              label="Conteúdo"
+              label-for="article-content"
             >
-              <b-form-input
-                id="article-imageUrl"
-                type="text"
-                v-model="article.imageUrl"
-                required
-                :readonly="mode === 'remove'"
-                placeholder="Informe a URL da Imagem..."
+              <VueEditor
+                v-model="article.content"
+                placeholder="Informe o Conteúdo do Beneficiario..."
               />
             </b-form-group>
           </b-col>
-           </b-row>
-        
-               <b-row>
-            <b-col md="6" sm="12">
-              <b-form-group
-                v-if="mode === 'save'"
-                label="Categoria:"
-                label-for="article-categoryId"
-              >
-                <b-form-select
-                  id="article-categoryId"
-                  :options="categories"
-                  v-model="article.categoryId"
-                />
-              </b-form-group>
-            </b-col>
-            <b-col md="6" sm="12">
-              <b-form-group
-                v-if="mode === 'save'"
-                label="Autor:"
-                label-for="article-userId"
-              >
-                <b-form-select
-                  id="article-userId"
-                  :options="users"
-                  v-model="article.userId"
-                />
-              </b-form-group>
-            </b-col>
-              </b-row>
-              <b-row>
-            <b-col md="12" sm="12">
-              <b-form-group
-                v-if="mode === 'save'"
-                label="Conteúdo"
-                label-for="article-content"
-              >
-                <VueEditor
-                  v-model="article.content"
-                  placeholder="Informe o Conteúdo do Artigo..."
-                />
-              </b-form-group>
-            </b-col>
-          </b-row>
-         </b-card>
+        </b-row>
+      </b-card>
 
-
-          <b-button variant="primary" v-if="mode === 'save'" @click="save"
-            >Salvar</b-button
-          >
-          <b-button variant="danger" v-if="mode === 'remove'" @click="remove"
-            >Excluir</b-button
-          >
-          <b-button class="ml-2" @click="reset">Cancelar</b-button>
-    
-    
+      <b-button variant="primary" v-if="mode === 'save'" @click="save"
+        >Salvar</b-button
+      >
+      <b-button variant="danger" v-if="mode === 'remove'" @click="remove"
+        >Excluir</b-button
+      >
+      <b-button class="ml-2" @click="reset">Cancelar</b-button>
     </b-form>
     <hr />
     <b-table hover striped :items="articles" :fields="fields">
-      <template slot="actions" slot-scope="data">
+      <!-- <template slot="actions" slot-scope="data"> -->
+      <template v-slot:cell(actions)="data">
         <b-button
           variant="warning"
           @click="loadArticle(data.item)"
@@ -303,8 +275,6 @@ export default {
       article: {},
       articles: [],
       categories: [],
-      beneficiario: {},
-      beneficiarios: [],
       users: [],
       page: 1,
       limit: 0,
@@ -312,11 +282,17 @@ export default {
       fields: [
         { key: "id", label: "Código", sortable: true },
         { key: "name", label: "Nome", sortable: true },
-         { key: "sexo", label: "Sexo", sortable: true },
+        { key: "sexo", label: "Sexo", sortable: true },
         { key: "email", label: "Email", sortable: true },
         { key: "cpf", label: "CPF", sortable: true },
-        { key: "nascimento", label: "Data de nascimento", sortable: true },
+        { key: "dtNascimento", label: "Data de nascimento", sortable: true },
         { key: "naturalidade", label: "Naturalidade", sortable: true },
+        { key: "rua", label: "Rua", sortable: true },
+        { key: "bairro", label: "Bairro", sortable: true },
+        { key: "cep", label: "CEP", sortable: true },
+        { key: "cidade", label: "Cidade", sortable: true },
+        { key: "estado", label: "Estado", sortable: true },
+        { key: "pais", label: "País", sortable: true },
         { key: "description", label: "Descrição", sortable: true },
         { key: "actions", label: "Ações" },
       ],
