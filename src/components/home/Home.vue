@@ -1,12 +1,12 @@
 <template>
     <div class="home">
         <PageTitle icon="fa fa-home" main="Dashboard"
-            sub="Base de Conhecimento" />
+            sub="Pagina Inicial" />
         <div class="stats">
-            <Stat title="Categorias" :value="stat.categories"
-                icon="fa fa-folder" color="#d54d50" />
-            <Stat title="Artigos" :value="stat.articles"
-                icon="fa fa-file" color="#3bc480" />
+            <Stat title="Beneficiarios" :value="stat.articles"
+                icon="fa fa-users" color="#3bc480" />
+             <Stat title="Beneficios" :value="stat.categories"
+                icon="fa fa-credit-card" color="#d54d50" />
             <Stat title="Usuários" :value="stat.users"
                 icon="fa fa-user" color="#3282cd" />
         </div>
