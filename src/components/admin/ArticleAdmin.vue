@@ -107,6 +107,7 @@
               v-if="mode === 'save'"
               label="Beneficio:"
               label-for="article-categoryId"
+              required
             >
               <b-form-select
                 id="article-categoryId"
@@ -120,6 +121,7 @@
               v-if="mode === 'save'"
               label="Atendente:"
               label-for="article-userId"
+              required
             >
               <b-form-select
                 id="article-userId"
@@ -133,7 +135,7 @@
 
       <b-card header="Endereço" header-tag="h4">
         <b-row>
-          <b-col md="4" sm="12">
+          <b-col md="3" sm="12">
             <b-form-group label="Rua:" label-for="article-rua">
               <b-form-input
                 id="article-rua"
@@ -145,7 +147,7 @@
               />
             </b-form-group>
           </b-col>
-          <b-col md="4" sm="12">
+          <b-col md="3" sm="12">
             <b-form-group label="Bairro:" label-for="article-bairo">
               <b-form-input
                 id="article-bairro"
@@ -157,7 +159,19 @@
               />
             </b-form-group>
           </b-col>
-          <b-col md="4" sm="12">
+           <b-col md="3" sm="12">
+            <b-form-group label="Complemento:" label-for="article-complemento">
+              <b-form-input
+                id="article-complemento"
+                type="text"
+                v-model="article.complemento"
+                required
+                :readonly="mode === 'remove'"
+                placeholder=""
+              />
+            </b-form-group>
+          </b-col>
+          <b-col md="3" sm="12">
             <b-form-group label="CEP:" label-for="article-cep">
               <b-form-input
                 id="article-cep"
@@ -289,11 +303,12 @@ export default {
         { key: "naturalidade", label: "Naturalidade", sortable: true },
         { key: "rua", label: "Rua", sortable: true },
         { key: "bairro", label: "Bairro", sortable: true },
+        { key: "complemento", label: "Complemento", sortable: true },
         { key: "cep", label: "CEP", sortable: true },
         { key: "cidade", label: "Cidade", sortable: true },
         { key: "estado", label: "Estado", sortable: true },
         { key: "pais", label: "País", sortable: true },
-        { key: "description", label: "Descrição", sortable: true },
+        { key: "content", label: "Observaçoes", sortable: true },
         { key: "actions", label: "Ações" },
       ],
     };

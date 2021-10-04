@@ -11,7 +11,7 @@
             </div>
             <div class="article-item-info">
                 <h2>{{ article.name }}</h2>
-                <p>{{ article.description }}</p>
+                <p>{{ article.sexo }}</p>
                 <span class="article-item-author">
                     <strong>Autor: </strong>{{ article.author }}
                 </span>
