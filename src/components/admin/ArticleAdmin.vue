@@ -46,45 +46,27 @@
 
         <b-row>
           <b-col md="4" sm="12">
-            <b-form-group label="CPF:" label-for="article-cpf">
-              <b-form-input
-                id="article-cpf"
-                type="text"
-                v-model="article.cpf"
-                required
-                :readonly="mode === 'remove'"
-                placeholder=""
-              />
-            </b-form-group>
-          </b-col>
-          <b-col md="4" sm="12">
-            <label for="article-dtNascimento">Data de dtNascimento:</label>
-            <b-input-group class="mb-3">
-              <b-form-input
+            <b-form-group
+              label="Data de Nascimento:"
+              label-for="data-nascimento-id"
+            >
+              <b-form-datepicker
                 id="article-dtNascimento"
                 v-model="article.dtNascimento"
-                type="text"
                 required
-                :readonly="mode === 'remove'"
+                hide-header
+                dark
                 placeholder=""
-                autocomplete="off"
-              ></b-form-input>
-              <b-input-group-append>
-                <b-form-datepicker
-                  v-model="article.dtNascimento"
-                  today-button
-                  reset-button
-                  close-button
-                  button-only
-                  right
-                  locale="PT"
-                  aria-controls="article-dtNascimento"
-                  @context="onContext"
-                ></b-form-datepicker>
-              </b-input-group-append>
-            </b-input-group>
-            <p class="mb-1"></p>
+                :date-format-options="{
+                  year: 'numeric',
+                  month: '2-digit',
+                  day: '2-digit',
+                }"
+              ></b-form-datepicker>
+            </b-form-group>
+            <!-- Data de Nascimento: {{article.dtNascimento}} -->
           </b-col>
+
           <b-col md="4" sm="12">
             <b-form-group
               label="Naturalidade:"
@@ -159,7 +141,7 @@
               />
             </b-form-group>
           </b-col>
-           <b-col md="3" sm="12">
+          <b-col md="3" sm="12">
             <b-form-group label="Complemento:" label-for="article-complemento">
               <b-form-input
                 id="article-complemento"

@@ -26,7 +26,7 @@
                <b-nav-item>
                  <i class="fa  fa-toggle-off" :class="icon"></i>
                 
-               Abrir Menu Lateral
+               Menu Lateral
               </b-nav-item>
               </a>
               <b-nav-item-dropdown right>
@@ -77,6 +77,14 @@ export default {
   display: flex;
   justify-content: left;
   align-items: left;
+}
+.navbar-dark .navbar-nav .nav-link{
+  color: #ffff !important;
+  
+}
+.navbar-dark .navbar-nav .nav-link a:hover{
+  color: chocolate !important;
+  
 }
 
 .title {
