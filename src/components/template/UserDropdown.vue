@@ -5,11 +5,14 @@
       <div class="user-dropdown-img">
         <Gravatar :email="user.email" alt="User" />
       </div>
-      <i class="fa fa-angle-down"></i>
+      <!-- <i class="fa fa-angle-down"></i> -->
     </div>
     <div class="user-dropdown-content">
-      <router-link to="/admin" v-if="user.admin">
-        <i class="fa fa-cogs"></i> Administração
+       <router-link to="/pessoa" v-if="user.admin">
+        <i class="fa fa-cogs"></i> Cadastro
+      </router-link>
+       <router-link to="/admin" v-if="user.admin">
+        <i class="fa fa-cogs"></i> User
       </router-link>
       <a href @click.prevent="logout"><i class="fa fa-sign-out"></i> Sair</a>
     </div>
@@ -44,14 +47,14 @@ export default {
 .user-button {
   display: flex;
   align-items: center;
-  color: rgb(245, 81, 6);
+  color: #ffff;
   font-weight: 100;
   height: 100%;
   padding: 0px 20px;
 }
 
 .user-dropdown:hover {
-  background-color: rgb(250, 244, 244);
+  background-color: #0f1870;
 }
 
 .user-dropdown-img {
@@ -65,10 +68,11 @@ export default {
 
 .user-dropdown-content {
   position: absolute;
+  border-radius: 32px;
   right: 0px;
   background-color: #fffdfd;
   min-width: 170px;
-  box-shadow: 0px 8px 16px 0px rgba(218, 136, 136, 0.2);
+  box-shadow: 0px 8px 16px 0px rgba(4, 76, 211, 0.144);
   padding: 10px;
   z-index: 1;
 
@@ -88,13 +92,13 @@ export default {
 
 .user-dropdown-content a {
   text-decoration: none;
-  color: rgb(245, 81, 6);
+  color: #007bff;
   padding: 10px;
 }
 
 .user-dropdown-content a:hover {
   text-decoration: none;
-  color: rgb(245, 81, 6);
+  color: #0f1870;
   background-color: #fffefe;
 }
 </style>

@@ -2,9 +2,9 @@
   <header class="header">
     <h1 class="title" v-if="!hideUserDropdown">
       <div>
-        <b-navbar toggleable="lg" type="dark" variant="dark">
+        <b-navbar toggleable="lg" type="dark" class="nav-menu">
           <b-navbar-brand href="#">
-            <img src="../../assets/logo.png" width="30" alt="Avaloon Logo" />
+            <img src="../../assets/logo.png" width="30" alt="Crass Logo" />
           </b-navbar-brand>
 
           <b-navbar-toggle target="nav-collapse"></b-navbar-toggle>
@@ -23,19 +23,12 @@
 
             <b-navbar-nav class="ml-auto">
               <a class="toggle" @click="toggleMenu" v-if="!hideToggle">
-               <b-nav-item>
-                 <i class="fa  fa-toggle-off" :class="icon"></i>
-                
-               Menu Lateral
-              </b-nav-item>
+                <b-nav-item>
+                  <i class="fa fa-toggle-off" :class="icon"></i>
+                  Menu Lateral
+                </b-nav-item>
               </a>
-              <b-nav-item-dropdown right>
-                <template #button-content>
-                  <i class="fa fa-user"></i>
-                  <em>User</em>
-                </template>
-                <UserDropdown v-if="!hideUserDropdown" />
-              </b-nav-item-dropdown>
+              <UserDropdown v-if="!hideUserDropdown" />
             </b-navbar-nav>
           </b-collapse>
         </b-navbar>
@@ -78,37 +71,39 @@ export default {
   justify-content: left;
   align-items: left;
 }
-.navbar-dark .navbar-nav .nav-link{
+.navbar-dark .navbar-nav .nav-link {
   color: #ffff !important;
-  
 }
-.navbar-dark .navbar-nav .nav-link a:hover{
-  color: chocolate !important;
-  
+.navbar-dark .navbar-nav .nav-link a:hover {
+  color: #0f1870 !important;
+}
+.nav-menu {
+  background-color: #0f1870;
 }
 
 .title {
   font-size: 1.2rem;
-  color: green;
+  color: #0f1870;
   font-weight: 100;
   flex-grow: 1;
   text-align: center;
 }
 
 .title a i {
-  color: rgb(241, 16, 16);
+  /**mudar icones */
+  color: #007bff;
   text-decoration: none;
 }
 
 .title a:hover {
-  color: rgb(109, 23, 221);
+  color: #0f1870;
   text-decoration: none;
 }
 
 header.header > a.toggle {
   width: 60px;
   height: 100%;
-  color: rgb(235, 12, 12);
+  color: #ffff;
   justify-self: flex-start;
   text-decoration: none;
 
@@ -118,7 +113,7 @@ header.header > a.toggle {
 }
 
 header.header > a.toggle:hover {
-  color: rgb(243, 3, 3);
-  background-color: rgba(248, 10, 22, 0.404);
+  color: #007bff;
+  background-color: #0f1870;
 }
 </style>

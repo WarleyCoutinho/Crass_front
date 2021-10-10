@@ -1,44 +1,42 @@
 <template>
-  <div class="article-admin">
+  <div class="pessoa-admin">
     <b-form>
-      <input id="article-id" type="hidden" v-model="article.id" />
-      <b-card header="Dados Pessoais" header-tag="h4">
+      <b-card header="Dados pessoais" header-tag="h4">
+        <input type="hidden" v-model="pessoa" />
         <b-row>
           <b-col md="4" sm="12">
-            <b-form-group label="Nome:" label-for="article-name">
+            <b-form-group label="Nome:" label-for="pessoa-name">
               <b-form-input
-                id="article-name"
+                id="pessoa-name"
                 type="text"
-                v-model="article.name"
-                required
+                v-model="pessoa.name"
                 :readonly="mode === 'remove'"
-                placeholder=""
+                required
+                placeholder="Informe Nome"
               />
             </b-form-group>
           </b-col>
-
           <b-col md="4" sm="12">
-            <b-form-group label="Sexo:" label-for="article-sexo">
+            <b-form-group label="Sexo:" label-for="pessoa-sexo">
               <b-form-input
-                id="article-sexo"
+                id="pessoa-sexo"
                 type="text"
-                v-model="article.sexo"
-                required
+                v-model="pessoa.sexo"
                 :readonly="mode === 'remove'"
-                placeholder=""
+                required
+                placeholder="Informe o sexo"
               />
             </b-form-group>
           </b-col>
-
           <b-col md="4" sm="12">
-            <b-form-group label="E-mail:" label-for="article-email">
+            <b-form-group label="CPF:" label-for="pessoa-cpf">
               <b-form-input
-                id="article-email"
+                id="pessoa-cpf"
                 type="text"
-                v-model="article.email"
-                required
+                v-model="pessoa.cpf"
                 :readonly="mode === 'remove'"
-                placeholder=""
+                required
+                placeholder="Informe cpf"
               />
             </b-form-group>
           </b-col>
@@ -46,13 +44,24 @@
 
         <b-row>
           <b-col md="4" sm="12">
+            <b-form-group label="E-mail:" label-for="pessoa-email">
+              <b-form-input
+                id="pessoa-email"
+                type="text"
+                v-model="pessoa.email"
+                :readonly="mode === 'remove'"
+                placeholder=""
+              />
+            </b-form-group>
+          </b-col>
+          <b-col md="4" sm="12">
             <b-form-group
               label="Data de Nascimento:"
               label-for="data-nascimento-id"
             >
               <b-form-datepicker
-                id="article-dtNascimento"
-                v-model="article.dtNascimento"
+                id="pessoa-dtNascimento"
+                v-model="pessoa.dtNascimento"
                 required
                 hide-header
                 dark
@@ -64,21 +73,16 @@
                 }"
               ></b-form-datepicker>
             </b-form-group>
-            <!-- Data de Nascimento: {{article.dtNascimento}} -->
           </b-col>
-
           <b-col md="4" sm="12">
-            <b-form-group
-              label="Naturalidade:"
-              label-for="article-naturalidade"
-            >
+            <b-form-group label="Naturalidade:" label-for="pessoa-naturalidade">
               <b-form-input
-                id="article-naturalidade"
+                id="pessoa-naturalidade"
                 type="text"
-                v-model="article.naturalidade"
-                required
+                v-model="pessoa.naturalidade"
                 :readonly="mode === 'remove'"
-                placeholder=""
+                required
+                placeholder="Informe a sua Naturalidade"
               />
             </b-form-group>
           </b-col>
@@ -88,13 +92,13 @@
             <b-form-group
               v-if="mode === 'save'"
               label="Beneficio:"
-              label-for="article-categoryId"
+              label-for="pessoa-categoryId"
               required
             >
               <b-form-select
-                id="article-categoryId"
+                id="pessoa-categoryId"
                 :options="categories"
-                v-model="article.categoryId"
+                v-model="pessoa.categoryId"
               />
             </b-form-group>
           </b-col>
@@ -102,217 +106,217 @@
             <b-form-group
               v-if="mode === 'save'"
               label="Atendente:"
-              label-for="article-userId"
+              label-for="pessoa-userId"
               required
             >
               <b-form-select
-                id="article-userId"
+                id="pessoa-userId"
                 :options="users"
-                v-model="article.userId"
+                v-model="pessoa.userId"
               />
             </b-form-group>
           </b-col>
         </b-row>
       </b-card>
-
-      <b-card header="Endereço" header-tag="h4">
+       <!-- <b-card header="Endereços" header-tag="h4">
+        <input type="hidden" v-model="endereco" />
         <b-row>
-          <b-col md="3" sm="12">
-            <b-form-group label="Rua:" label-for="article-rua">
+          <b-col md="4" sm="12">
+            <b-form-group label="Rua:" label-for="endereco-rua">
               <b-form-input
-                id="article-rua"
+                id="endereco-rua"
                 type="text"
-                v-model="article.rua"
-                required
+                v-model="endereco.rua"
                 :readonly="mode === 'remove'"
-                placeholder=""
+                required
+                placeholder="Informe a Rua"
               />
             </b-form-group>
           </b-col>
-          <b-col md="3" sm="12">
-            <b-form-group label="Bairro:" label-for="article-bairo">
+          <b-col md="4" sm="12">
+            <b-form-group label="Bairro:" label-for="endereco-bairro">
               <b-form-input
-                id="article-bairro"
+                id="endereco-bairro"
                 type="text"
-                v-model="article.bairro"
-                required
+                v-model="endereco.bairro"
                 :readonly="mode === 'remove'"
-                placeholder=""
+                required
+                placeholder="Informe bairro"
               />
             </b-form-group>
           </b-col>
-          <b-col md="3" sm="12">
-            <b-form-group label="Complemento:" label-for="article-complemento">
+          <b-col md="4" sm="12">
+            <b-form-group label="Complemento:" label-for="endereco-complemento">
               <b-form-input
-                id="article-complemento"
+                id="endereco-complemento"
                 type="text"
-                v-model="article.complemento"
-                required
+                v-model="endereco.complemento"
                 :readonly="mode === 'remove'"
-                placeholder=""
-              />
-            </b-form-group>
-          </b-col>
-          <b-col md="3" sm="12">
-            <b-form-group label="CEP:" label-for="article-cep">
-              <b-form-input
-                id="article-cep"
-                type="text"
-                v-model="article.cep"
                 required
-                :readonly="mode === 'remove'"
-                placeholder=""
+                placeholder="Informe Complemento"
               />
             </b-form-group>
           </b-col>
         </b-row>
 
         <b-row>
-          <b-col md="4" sm="12">
-            <b-form-group label="Cidade:" label-for="article-cidade">
+          <b-col md="3" sm="12">
+            <b-form-group label="Cep:" label-for="endereco-cep">
               <b-form-input
-                id="article-cidade"
+                id="endereco-cep"
                 type="text"
-                v-model="article.cidade"
-                required
+                v-model="endereco.cep"
                 :readonly="mode === 'remove'"
-                placeholder=""
+                required
+                placeholder="Informe o cep"
               />
             </b-form-group>
           </b-col>
-          <b-col md="4" sm="12">
-            <b-form-group label="Estado:" label-for="article-estado">
+          <b-col md="3" sm="12">
+            <b-form-group label="Cidade:" label-for="endereco-cidade">
               <b-form-input
-                id="article-estado"
+                id="endereco-cidade"
                 type="text"
-                v-model="article.estado"
-                required
+                v-model="endereco.cidade"
                 :readonly="mode === 'remove'"
-                placeholder=""
+                required
+                placeholder="Informe cidade"
               />
             </b-form-group>
           </b-col>
-          <b-col md="4" sm="12">
-            <b-form-group label="País:" label-for="article-pais">
+          <b-col md="3" sm="12">
+            <b-form-group label="Estado:" label-for="endereco-estado">
               <b-form-input
-                id="article-pais"
+                id="endereco-estado"
                 type="text"
-                v-model="article.pais"
-                required
+                v-model="endereco.estado"
                 :readonly="mode === 'remove'"
-                placeholder=""
+                required
+                placeholder="Informe estado"
+              />
+            </b-form-group>
+          </b-col>
+          <b-col md="3" sm="12">
+            <b-form-group label="País:" label-for="endereco-pais">
+              <b-form-input
+                id="endereco-pais"
+                type="text"
+                v-model="endereco.pais"
+                :readonly="mode === 'remove'"
+                required
+                placeholder="Informe o pais"
               />
             </b-form-group>
           </b-col>
         </b-row>
-      </b-card>
-
-      <b-card header="Observações" header-tag="h4">
+      </b-card> -->
+       <b-card header="Observações" header-tag="h4">
         <b-row>
           <b-col md="12" sm="12">
             <b-form-group
               v-if="mode === 'save'"
               label="Conteúdo"
-              label-for="article-content"
+              label-for="pessoa-content"
             >
               <VueEditor
-                v-model="article.content"
+                v-model="pessoa.content"
                 placeholder="Informe o Conteúdo do Beneficiario..."
               />
             </b-form-group>
           </b-col>
         </b-row>
       </b-card>
-
-      <b-button variant="primary" v-if="mode === 'save'" @click="save"
-        >Salvar</b-button
-      >
-      <b-button variant="danger" v-if="mode === 'remove'" @click="remove"
-        >Excluir</b-button
-      >
-      <b-button class="ml-2" @click="reset">Cancelar</b-button>
+      <hr />
+      <b-row>
+        <b-col xs="12">
+          <b-button variant="primary" v-if="mode === 'save'" @click="save">
+            Salvar
+          </b-button>
+          <b-button variant="danger" v-if="mode === 'remove'" @click="remove">
+            Excluir
+          </b-button>
+          <b-button class="ml-2" @click="reset"> Cancelar </b-button>
+        </b-col>
+      </b-row>
     </b-form>
+
     <hr />
-    <b-table hover striped :items="articles" :fields="fields">
-      <!-- <template slot="actions" slot-scope="data"> -->
+    <b-table
+      hover
+      striped
+      small
+      sort-icon-left
+      head-variant="dark"
+      :items="pessoas"
+      :fields="fields"
+    >
       <template v-slot:cell(actions)="data">
         <b-button
           variant="warning"
-          @click="loadArticle(data.item)"
+          @click="loadPessoa(data.item)"
           class="mr-2"
         >
           <i class="fa fa-pencil"></i>
         </b-button>
-        <b-button variant="danger" @click="loadArticle(data.item, 'remove')">
+        <b-button variant="danger" @click="loadPessoa(data.item, 'remove')">
           <i class="fa fa-trash"></i>
         </b-button>
       </template>
     </b-table>
-    <b-pagination
-      size="md"
-      v-model="page"
-      :total-rows="count"
-      :per-page="limit"
-    />
   </div>
 </template>
 
 <script>
-import { VueEditor } from "vue2-editor";
 import { baseApiUrl, showError } from "@/global";
+import { VueEditor } from "vue2-editor";
 import axios from "axios";
 
 export default {
-  name: "ArticleAdmin",
+  name: "Pessoa",
   components: { VueEditor },
   data: function () {
     return {
       mode: "save",
-      article: {},
-      articles: [],
+      pessoa: {},
+      pessoas: [],
+      endereco: {},
+      enderecos: [],
       categories: [],
       users: [],
       page: 1,
       limit: 0,
       count: 0,
       fields: [
-        { key: "id", label: "Código", sortable: true },
+        { key: "pessoaId", label: "#" },
         { key: "name", label: "Nome", sortable: true },
-        { key: "sexo", label: "Sexo", sortable: true },
-        { key: "email", label: "Email", sortable: true },
-        { key: "cpf", label: "CPF", sortable: true },
-        { key: "dtNascimento", label: "Data de nascimento", sortable: true },
+        { key: "sexo", label: "sexo", sortable: true },
+        { key: "email", label: "email", sortable: true },
+        { key: "cpf", label: "cpf", sortable: true },
+        { key: "dtNascimento", label: "Data de Nascimento", sortable: true },
         { key: "naturalidade", label: "Naturalidade", sortable: true },
-        { key: "rua", label: "Rua", sortable: true },
-        { key: "bairro", label: "Bairro", sortable: true },
-        { key: "complemento", label: "Complemento", sortable: true },
-        { key: "cep", label: "CEP", sortable: true },
-        { key: "cidade", label: "Cidade", sortable: true },
-        { key: "estado", label: "Estado", sortable: true },
-        { key: "pais", label: "País", sortable: true },
         { key: "content", label: "Observaçoes", sortable: true },
+
         { key: "actions", label: "Ações" },
       ],
     };
   },
   methods: {
-    loadArticles() {
-      const url = `${baseApiUrl}/articles?page=${this.page}`;
+    loadPessoas() {
+      const url = `${baseApiUrl}/pessoas`;
       axios.get(url).then((res) => {
-        this.articles = res.data.data;
-        this.count = res.data.count;
-        this.limit = res.data.limit;
+        this.pessoas = res.data;
       });
     },
+   
     reset() {
       this.mode = "save";
-      this.article = {};
-      this.loadArticles();
+      this.pessoa = {};
+      this.loadPessoas();
     },
     save() {
-      const method = this.article.id ? "put" : "post";
-      const id = this.article.id ? `/${this.article.id}` : "";
-      axios[method](`${baseApiUrl}/articles${id}`, this.article)
+      const method = this.pessoa.pessoaId ? "put" : "post";
+      const id = this.pessoa.pessoaId ? `/${this.pessoa.pessoaId}` : "";
+      axios[method](`${baseApiUrl}/pessoas${id}`, this.pessoa)
         .then(() => {
           this.$toasted.global.defaultSuccess();
           this.reset();
@@ -320,22 +324,20 @@ export default {
         .catch(showError);
     },
     remove() {
-      const id = this.article.id;
+      const id = this.pessoa.pessoaId;
       axios
-        .delete(`${baseApiUrl}/articles/${id}`)
+        .delete(`${baseApiUrl}/pessoas/${id}`)
         .then(() => {
           this.$toasted.global.defaultSuccess();
           this.reset();
         })
         .catch(showError);
     },
-    loadArticle(article, mode = "save") {
+    loadPessoa(pessoa, mode = "save") {
       this.mode = mode;
-      axios
-        .get(`${baseApiUrl}/articles/${article.id}`)
-        .then((res) => (this.article = res.data));
+      this.pessoa = { ...pessoa };
     },
-    loadCategories() {
+     loadCategories() {
       const url = `${baseApiUrl}/categories`;
       axios.get(url).then((res) => {
         this.categories = res.data.map((category) => {
@@ -351,19 +353,14 @@ export default {
         });
       });
     },
-  },
-  watch: {
-    page() {
-      this.loadArticles();
-    },
+  
   },
   mounted() {
+    this.loadPessoas();
     this.loadUsers();
     this.loadCategories();
-    this.loadArticles();
   },
 };
 </script>
 
-<style>
-</style>
+<style></style>
