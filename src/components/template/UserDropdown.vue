@@ -12,7 +12,10 @@
         <i class="fa fa-cogs"></i> Cadastro
       </router-link>
        <router-link to="/admin" v-if="user.admin">
-        <i class="fa fa-cogs"></i> User
+        <i class="fa fa-users"></i> Usuários
+      </router-link>
+       <router-link to="#" v-if="user.admin">
+        <i class="fa fa-cogs"></i> Configuração
       </router-link>
       <a href @click.prevent="logout"><i class="fa fa-sign-out"></i> Sair</a>
     </div>

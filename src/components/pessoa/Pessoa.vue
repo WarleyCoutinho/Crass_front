@@ -2,7 +2,7 @@
   <div class="pessoa-admin">
     <b-form>
       <b-card header="Dados pessoais" header-tag="h4">
-        <input type="hidden" v-model="pessoa" />
+        <input type="hidden" v-model="pessoa.id" />
         <b-row>
           <b-col md="4" sm="12">
             <b-form-group label="Nome:" label-for="pessoa-name">
@@ -118,7 +118,7 @@
           </b-col>
         </b-row>
       </b-card>
-       <!-- <b-card header="Endereços" header-tag="h4">
+      <!-- <b-card header="Endereços" header-tag="h4">
         <input type="hidden" v-model="endereco" />
         <b-row>
           <b-col md="4" sm="12">
@@ -210,7 +210,7 @@
           </b-col>
         </b-row>
       </b-card> -->
-       <b-card header="Observações" header-tag="h4">
+      <b-card header="Observações" header-tag="h4">
         <b-row>
           <b-col md="12" sm="12">
             <b-form-group
@@ -251,11 +251,7 @@
       :fields="fields"
     >
       <template v-slot:cell(actions)="data">
-        <b-button
-          variant="warning"
-          @click="loadPessoa(data.item)"
-          class="mr-2"
-        >
+        <b-button variant="warning" @click="loadPessoa(data.item)" class="mr-2">
           <i class="fa fa-pencil"></i>
         </b-button>
         <b-button variant="danger" @click="loadPessoa(data.item, 'remove')">
@@ -268,8 +264,8 @@
 
 <script>
 import { baseApiUrl, showError } from "@/global";
-import { VueEditor } from "vue2-editor";
 import axios from "axios";
+import { VueEditor } from "vue2-editor";
 
 export default {
   name: "Pessoa",
@@ -280,14 +276,14 @@ export default {
       pessoa: {},
       pessoas: [],
       endereco: {},
-      enderecos: [],
-      categories: [],
+      // enderecos: [],
+      // categories: [],
       users: [],
       page: 1,
       limit: 0,
       count: 0,
       fields: [
-        { key: "pessoaId", label: "#" },
+        { key: "id", label: "#" },
         { key: "name", label: "Nome", sortable: true },
         { key: "sexo", label: "sexo", sortable: true },
         { key: "email", label: "email", sortable: true },
@@ -307,15 +303,15 @@ export default {
         this.pessoas = res.data;
       });
     },
-   
+
     reset() {
       this.mode = "save";
       this.pessoa = {};
       this.loadPessoas();
     },
     save() {
-      const method = this.pessoa.pessoaId ? "put" : "post";
-      const id = this.pessoa.pessoaId ? `/${this.pessoa.pessoaId}` : "";
+      const method = this.pessoa.id ? "put" : "post";
+      const id = this.pessoa.id ? `/${this.pessoa.id}` : "";
       axios[method](`${baseApiUrl}/pessoas${id}`, this.pessoa)
         .then(() => {
           this.$toasted.global.defaultSuccess();
@@ -324,7 +320,7 @@ export default {
         .catch(showError);
     },
     remove() {
-      const id = this.pessoa.pessoaId;
+      const id = this.pessoa.id;
       axios
         .delete(`${baseApiUrl}/pessoas/${id}`)
         .then(() => {
@@ -337,7 +333,7 @@ export default {
       this.mode = mode;
       this.pessoa = { ...pessoa };
     },
-     loadCategories() {
+    loadCategories() {
       const url = `${baseApiUrl}/categories`;
       axios.get(url).then((res) => {
         this.categories = res.data.map((category) => {
@@ -353,7 +349,6 @@ export default {
         });
       });
     },
-  
   },
   mounted() {
     this.loadPessoas();

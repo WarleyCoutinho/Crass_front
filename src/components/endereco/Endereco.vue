@@ -2,7 +2,7 @@
   <div class="endereco-admin">
     <b-form>
       <b-card header="Realizar Cadastro de Endereços" header-tag="h4">
-        <input type="hidden" v-model="endereco" />
+        <input type="hidden" v-model="endereco.id" />
         <b-row>
           <b-col md="4" sm="12">
             <b-form-group label="Rua:" label-for="endereco-rua">
@@ -144,8 +144,11 @@ export default {
       mode: "save",
       endereco: {},
       enderecos: [],
+       page: 1,
+      limit: 0,
+      count: 0,
       fields: [
-        { key: "enderecoId", label: "#" },
+        { key: "id", label: "#" },
         { key: "rua", label: "Ruas:", sortable: true },
         { key: "bairro", sortable: true },
         { key: "complemento", label: "Complementos:", sortable: true },
@@ -153,7 +156,7 @@ export default {
         { key: "cidade", label: "Cidades:", sortable: true },
         { key: "estado", label: "Estados:", sortable: true },
         { key: "pais", label: "País:", sortable: true },
-
+       
         { key: "actions", label: "Ações" },
       ],
     };
@@ -171,8 +174,8 @@ export default {
       this.loadEnderecos();
     },
     save() {
-      const method = this.endereco.enderecoId ? "put" : "post";
-      const id = this.endereco.enderecoId ? `/${this.endereco.enderecoId}` : "";
+      const method = this.endereco.id ? "put" : "post";
+      const id = this.endereco.id ? `/${this.endereco.id}` : "";
       axios[method](`${baseApiUrl}/enderecos${id}`, this.endereco)
         .then(() => {
           this.$toasted.global.defaultSuccess();
@@ -181,7 +184,7 @@ export default {
         .catch(showError);
     },
     remove() {
-      const id = this.endereco.enderecoId;
+      const id = this.endereco.id;
       axios
         .delete(`${baseApiUrl}/enderecos/${id}`)
         .then(() => {

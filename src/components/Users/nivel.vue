@@ -8,17 +8,11 @@
             <i class="fa fa-angle-down"></i>
         </div>
         <div class="user-dropdown-content">
-            <router-link to="/admin" v-if="user.nivel <= 1">
-                <i class="fa fa-cog"></i> Administração
+            <router-link to="/admin" v-if="user.nivel <= 2">
+                <i class="fa fa-cog"></i> Cadastro
             </router-link>
             <router-link to="/config" v-if="user.nivel <= 3">
                 <i class="fa fa-cogs"></i> Configuração
-            </router-link>
-            <router-link to="/program" v-if="user.nivel <= 4">
-                <i class="fa fa-tasks"></i> Programação
-            </router-link>
-            <router-link to="/equipamento" v-if="user.nivel <= 3">
-                <i class="fa fa-industry"></i> Equipamento
             </router-link>
             <router-link to="/users" v-if="user.nivel <= 1">
                 <i class="fa fa-users"></i> Usuários
