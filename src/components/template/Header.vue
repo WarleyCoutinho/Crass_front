@@ -11,13 +11,17 @@
 
           <b-collapse id="nav-collapse" is-nav>
             <b-navbar-nav>
-              <b-nav-item href="#">
+              <b-nav-item href="/">
                 <i class="fa fa-home"></i>
                 Home
               </b-nav-item>
-              <b-nav-item href="#">
-                <i class="fa fa-credit-card-alt"></i>
-                Beneficios
+              <b-nav-item href="/pessoa">
+                <i class="fa fa-address-card "></i>
+                Administração
+              </b-nav-item>
+                <b-nav-item href="#">
+                <i class="fa fa-cogs"></i>
+               Configuração
               </b-nav-item>
             </b-navbar-nav>
 
