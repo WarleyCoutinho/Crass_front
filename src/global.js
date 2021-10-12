@@ -1,7 +1,7 @@
 import Vue from 'vue'
 
 export const userKey = '__d2gfs8dstj12ba'
-export const baseApiUrl = 'http://heroku pg:psql postgresql-animate-80030 --app crass-back'
+export const baseApiUrl = 'https://crass-back.herokuapp.com'
 
 export function showError(e) {
     if(e && e.response && e.response.data) {
