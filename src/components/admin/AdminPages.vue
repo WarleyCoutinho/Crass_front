@@ -1,30 +1,22 @@
 <template>
-    <div class="admin-pages">
-        <PageTitle icon="fa fa-cogs" main="Administração do Sistema"
-            sub="Cadastros de Usuários" />
-        <div class="admin-pages-tabs">
-            <b-card no-body>
-                <b-tabs card>
-                    <b-tab title="Usuários">
-                        <UserAdmin />
-                    </b-tab>
-                </b-tabs>
-            </b-card>
-        </div>
+  <div class="admin-pages">
+    <b-col md sm="12" class="mt-4">
+      <PageTitle icon="fa fa-pencil-square-o" main="Apontamento Manual" sub="" />
+    </b-col>
+    <div>
+      <UserAdmin />
     </div>
+  </div>
 </template>
 
 <script>
-import PageTitle from '../template/PageTitle'
+import PageTitle from "../template/PageTitle";
+import UserAdmin from "./UserAdmin";
 
-
-import UserAdmin from './UserAdmin'
 export default {
-    name: 'AdminPages',
-    components: { PageTitle,UserAdmin }
-}
+  name: "AdminPages",
+  components: { PageTitle, UserAdmin },
+};
 </script>
 
-<style>
-
-</style>
+<style></style>
